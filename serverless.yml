@@ -57,10 +57,10 @@ functions:
   #     domain api call
   # - authorizer: authenticate using the AWS IAM role
   create:
-    handler: create.main
+    handler: notes/create.main
     events:
       - http:
-          path: notes
+          path: notes/notes
           method: post
           cors: true
           authorizer: aws_iam
@@ -68,10 +68,10 @@ functions:
     # Defines an HTTP API endpoint that calls the main function in get.js
     # - path: url path is /notes/{id}
     # - method: GET request
-    handler: get.main
+    handler: notes/get.main
     events:
       - http:
-          path: notes/{id}
+          path: notes/notes/{id}
           method: get
           cors: true
           authorizer: aws_iam
@@ -80,10 +80,10 @@ functions:
     # Defines an HTTP API endpoint that calls the main function in list.js
     # - path: url path is /notes
     # - method: GET request
-    handler: list.main
+    handler: notes/list.main
     events:
       - http:
-          path: notes
+          path: notes/notes
           method: get
           cors: true
           authorizer: aws_iam
@@ -92,10 +92,10 @@ functions:
     # Defines an HTTP API endpoint that calls the main function in update.js
     # - path: url path is /notes/{id}
     # - method: PUT request
-    handler: update.main
+    handler: notes/update.main
     events:
       - http:
-          path: notes/{id}
+          path: notes/notes/{id}
           method: put
           cors: true
           authorizer: aws_iam
@@ -104,10 +104,10 @@ functions:
     # Defines an HTTP endpoint to calls the main function in delete.js
     # path: url path is /notes/{id}
     # method: DELETE request
-    handler: delete.main
+    handler: notes/delete.main
     events:
       - http:
-          path: motes/{id}
+          path: notes/notes/{id}
           method: delete
           cors: true
           authorizer: aws_iam
