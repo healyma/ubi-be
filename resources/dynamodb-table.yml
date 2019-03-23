@@ -1,6 +1,7 @@
 Resources:
   NotesTable:
     Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
     Properties:
       TableName: ${self:custom.tableName}
       AttributeDefinitions:
@@ -19,6 +20,7 @@ Resources:
         WriteCapacityUnits: ${self:custom.tableThroughput}
   TodosTable:
     Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
     Properties:
       TableName: ${self:custom.tableName}
       AttributeDefinitions:
