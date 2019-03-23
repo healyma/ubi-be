@@ -22,7 +22,7 @@ custom:
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true
-
+  environment: ${file(env.yml):${self:custom.stage}, file(env.yml):default}
 provider:
   name: aws
   runtime: nodejs8.10
@@ -33,6 +33,7 @@ provider:
   # In this case Lambda functions are granted with permissions to access DynamoDB.
   environment:
     tableName: ${self:custom.tableName}
+    stripeSecretKey: ${self:custom.environment.stripeSecretKey}
 
   iamRoleStatements:
     - Effect: Allow
