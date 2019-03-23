@@ -3,7 +3,7 @@ Resources:
     Type: AWS::DynamoDB::Table
     DeletionPolicy: Delete
     Properties:
-      TableName: ${self:custom.tableName}-notes
+      TableName: ${self:custom.tableName}-ubi-notes
       AttributeDefinitions:
         - AttributeName: userId
           AttributeType: S
@@ -22,7 +22,7 @@ Resources:
     Type: AWS::DynamoDB::Table
     DeletionPolicy: Delete
     Properties:
-      TableName: ${self:custom.tableName}-todos
+      TableName: ${self:custom.tableName}-ubi-todos
       AttributeDefinitions:
         - AttributeName: userId
           AttributeType: S
