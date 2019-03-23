@@ -59,7 +59,7 @@ functions:
   # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
   #     domain api call
   # - authorizer: authenticate using the AWS IAM role
-  create:
+  notes-create:
     handler: notes/create.main
     events:
       - http:
@@ -67,7 +67,7 @@ functions:
           method: post
           cors: true
           authorizer: aws_iam
-  get:
+  notes-get:
     # Defines an HTTP API endpoint that calls the main function in get.js
     # - path: url path is /notes/{id}
     # - method: GET request
@@ -79,7 +79,7 @@ functions:
           cors: true
           authorizer: aws_iam
 
-  list:
+  notes-list:
     # Defines an HTTP API endpoint that calls the main function in list.js
     # - path: url path is /notes
     # - method: GET request
@@ -91,7 +91,7 @@ functions:
           cors: true
           authorizer: aws_iam
 
-  update:
+  notes-update:
     # Defines an HTTP API endpoint that calls the main function in update.js
     # - path: url path is /notes/{id}
     # - method: PUT request
@@ -103,7 +103,62 @@ functions:
           cors: true
           authorizer: aws_iam
 
-  delete: 
+  notes-delete: 
+    # Defines an HTTP endpoint to calls the main function in delete.js
+    # path: url path is /notes/{id}
+    # method: DELETE request
+    handler: notes/delete.main
+    events:
+      - http:
+          path: notes/{id}
+          method: delete
+          cors: true
+          authorizer: aws_iam
+  todos-create:
+    handler: notes/create.main
+    events:
+      - http:
+          path: notes
+          method: post
+          cors: true
+          authorizer: aws_iam
+  todos-get:
+    # Defines an HTTP API endpoint that calls the main function in get.js
+    # - path: url path is /notes/{id}
+    # - method: GET request
+    handler: notes/get.main
+    events:
+      - http:
+          path: notes/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+
+  todos-list:
+    # Defines an HTTP API endpoint that calls the main function in list.js
+    # - path: url path is /notes
+    # - method: GET request
+    handler: notes/list.main
+    events:
+      - http:
+          path: notes
+          method: get
+          cors: true
+          authorizer: aws_iam
+
+  todos-update:
+    # Defines an HTTP API endpoint that calls the main function in update.js
+    # - path: url path is /notes/{id}
+    # - method: PUT request
+    handler: notes/update.main
+    events:
+      - http:
+          path: notes/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
+
+  todos-delete: 
     # Defines an HTTP endpoint to calls the main function in delete.js
     # path: url path is /notes/{id}
     # method: DELETE request
