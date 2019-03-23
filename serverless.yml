@@ -60,7 +60,7 @@ functions:
     handler: notes/create.main
     events:
       - http:
-          path: notes/notes
+          path: notes
           method: post
           cors: true
           authorizer: aws_iam
@@ -71,7 +71,7 @@ functions:
     handler: notes/get.main
     events:
       - http:
-          path: notes/notes/{id}
+          path: notes/{id}
           method: get
           cors: true
           authorizer: aws_iam
@@ -83,7 +83,7 @@ functions:
     handler: notes/list.main
     events:
       - http:
-          path: notes/notes
+          path: notes
           method: get
           cors: true
           authorizer: aws_iam
@@ -95,7 +95,7 @@ functions:
     handler: notes/update.main
     events:
       - http:
-          path: notes/notes/{id}
+          path: notes/{id}
           method: put
           cors: true
           authorizer: aws_iam
@@ -107,7 +107,7 @@ functions:
     handler: notes/delete.main
     events:
       - http:
-          path: notes/notes/{id}
+          path: notes/{id}
           method: delete
           cors: true
           authorizer: aws_iam
