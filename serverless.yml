@@ -50,8 +50,8 @@ provider:
       # Restrict our IAM role permissions to
       # the specific table for the stage
       Resource:
-        - "Fn::GetAtt": [ NotesTable, Arn ]
-        - "Fn::GetAtt": [ TodosTable, Arn ]
+        - "Fn::GetAtt": [ prod-ubi-notes, Arn ]
+        - "Fn::GetAtt": [ prod-ubi-todos, Arn ]
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
   # - path: url path is /notes
