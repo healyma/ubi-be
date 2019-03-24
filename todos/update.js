@@ -10,15 +10,18 @@ export async function main(event, context) {
     // - 'noteId': path parameter
     Key: {
       userId: event.requestContext.identity.cognitoIdentityId,
-      noteId: event.pathParameters.id
+      todoId: event.pathParameters.id
     },
     // 'UpdateExpression' defines the attributes to be updated
     // 'ExpressionAttributeValues' defines the value in the update expression
-    UpdateExpression: "SET content = :content, attachment = :attachment, title=:title",
+    UpdateExpression: "SET complete = :complete, attachments = :attachments, title=:title,notes =:notes,people= :people",
     ExpressionAttributeValues: {
-      ":attachment": data.attachment || null,
-      ":content": data.content || null,
-      ":title" : data.title || null
+      ":complete": data.complete || null,
+      ":title" : data.title || null,
+      ":attachments" : data.attachments || null,
+      ":notes" : data.notes || null,
+      ":people" : data.people || null
+
     },
     // 'ReturnValues' specifies if and how to return the item's attributes,
     // where ALL_NEW returns all attributes of the item after the update; you
