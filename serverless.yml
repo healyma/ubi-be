@@ -157,7 +157,6 @@ functions:
           method: put
           cors: true
           authorizer: aws_iam
-
   delete-todo: 
     # Defines an HTTP endpoint to calls the main function in delete.js
     # path: url path is /notes/{id}
