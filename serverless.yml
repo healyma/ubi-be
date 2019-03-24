@@ -59,118 +59,116 @@ functions:
   # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
   #     domain api call
   # - authorizer: authenticate using the AWS IAM role
-  notes:
-    create:
-      handler: notes/create.main
-      events:
-        - http:
-            path: notes
-            method: post
-            cors: true
-            authorizer: aws_iam
-    get:
-      # Defines an HTTP API endpoint that calls the main function in get.js
-      # - path: url path is /notes/{id}
-      # - method: GET request
-      handler: notes/get.main
-      events:
-        - http:
-            path: notes/{id}
-            method: get
-            cors: true
-            authorizer: aws_iam
+  create-note:
+    handler: notes/create.main
+    events:
+      - http:
+          path: notes
+          method: post
+          cors: true
+          authorizer: aws_iam
+  get-note:
+    # Defines an HTTP API endpoint that calls the main function in get.js
+    # - path: url path is /notes/{id}
+    # - method: GET request
+    handler: notes/get.main
+    events:
+      - http:
+          path: notes/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
 
-    list:
-      # Defines an HTTP API endpoint that calls the main function in list.js
-      # - path: url path is /notes
-      # - method: GET request
-      handler: notes/list.main
-      events:
-        - http:
-            path: notes
-            method: get
-            cors: true
-            authorizer: aws_iam
+  list-notes:
+    # Defines an HTTP API endpoint that calls the main function in list.js
+    # - path: url path is /notes
+    # - method: GET request
+    handler: notes/list.main
+    events:
+      - http:
+          path: notes
+          method: get
+          cors: true
+          authorizer: aws_iam
 
-    update:
-      # Defines an HTTP API endpoint that calls the main function in update.js
-      # - path: url path is /notes/{id}
-      # - method: PUT request
-      handler: notes/update.main
-      events:
-        - http:
-            path: notes/{id}
-            method: put
-            cors: true
-            authorizer: aws_iam
+  update-note:
+    # Defines an HTTP API endpoint that calls the main function in update.js
+    # - path: url path is /notes/{id}
+    # - method: PUT request
+    handler: notes/update.main
+    events:
+      - http:
+          path: notes/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
 
-    delete: 
-      # Defines an HTTP endpoint to calls the main function in delete.js
-      # path: url path is /notes/{id}
-      # method: DELETE request
-      handler: notes/delete.main
-      events:
-        - http:
-            path: notes/{id}
-            method: delete
-            cors: true
-            authorizer: aws_iam
-  todos:
-    create:
-      handler: todos/create.main
-      events:
-        - http:
-            path: todos
-            method: post
-            cors: true
-            authorizer: aws_iam
-    get:
-      # Defines an HTTP API endpoint that calls the main function in get.js
-      # - path: url path is /notes/{id}
-      # - method: GET request
-      handler: todos/get.main
-      events:
-        - http:
-            path: todos/{id}
-            method: get
-            cors: true
-            authorizer: aws_iam
+  delete-note: 
+    # Defines an HTTP endpoint to calls the main function in delete.js
+    # path: url path is /notes/{id}
+    # method: DELETE request
+    handler: notes/delete.main
+    events:
+      - http:
+          path: notes/{id}
+          method: delete
+          cors: true
+          authorizer: aws_iam
+  create-todo:
+    handler: todos/create.main
+    events:
+      - http:
+          path: todos
+          method: post
+          cors: true
+          authorizer: aws_iam
+  get-todo:
+    # Defines an HTTP API endpoint that calls the main function in get.js
+    # - path: url path is /notes/{id}
+    # - method: GET request
+    handler: todos/get.main
+    events:
+      - http:
+          path: todos/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
 
-    list:
-      # Defines an HTTP API endpoint that calls the main function in list.js
-      # - path: url path is /notes
-      # - method: GET request
-      handler: todos/list.main
-      events:
-        - http:
-            path: todos
-            method: get
-            cors: true
-            authorizer: aws_iam
+  list-todos:
+    # Defines an HTTP API endpoint that calls the main function in list.js
+    # - path: url path is /notes
+    # - method: GET request
+    handler: todos/list.main
+    events:
+      - http:
+          path: todos
+          method: get
+          cors: true
+          authorizer: aws_iam
 
-    update:
-      # Defines an HTTP API endpoint that calls the main function in update.js
-      # - path: url path is /notes/{id}
-      # - method: PUT request
-      handler: todos/update.main
-      events:
-        - http:
-            path: todos/{id}
-            method: put
-            cors: true
-            authorizer: aws_iam
+  update-todo:
+    # Defines an HTTP API endpoint that calls the main function in update.js
+    # - path: url path is /notes/{id}
+    # - method: PUT request
+    handler: todos/update.main
+    events:
+      - http:
+          path: todos/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
 
-    delete: 
-      # Defines an HTTP endpoint to calls the main function in delete.js
-      # path: url path is /notes/{id}
-      # method: DELETE request
-      handler: todos/delete.main
-      events:
-        - http:
-            path: todos/{id}
-            method: delete
-            cors: true
-            authorizer: aws_iam
+  delete-todo: 
+    # Defines an HTTP endpoint to calls the main function in delete.js
+    # path: url path is /notes/{id}
+    # method: DELETE request
+    handler: todos/delete.main
+    events:
+      - http:
+          path: todos/{id}
+          method: delete
+          cors: true
+          authorizer: aws_iam
   billing:
     handler: billing.main
     events:
