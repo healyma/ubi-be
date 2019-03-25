@@ -6,14 +6,12 @@ export async function main(event, context) {
   const data = JSON.parse(event.body);
   const params = {
     TableName: process.env.todosTableName,
-    Item: {
+    list: {
       userId: event.requestContext.identity.cognitoIdentityId,
       todoId: uuid.v1(),
       complete: data.complete,
-      title: title,
-      attachments: data.attachment,
-      notes: data.notes,
-      people: data.people,
+      name: data.name,
+      items: data.listItems,
       createdAt: Date.now()
     }
   };
@@ -24,7 +22,7 @@ export async function main(event, context) {
     return success(params.Item);
   } catch (e) {
 
-    return failure({ status: false });
+    return failure({ status: false, "error" : e});
   }
 }
 
