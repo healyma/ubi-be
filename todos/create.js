@@ -6,7 +6,7 @@ export async function main(event, context) {
   const data = JSON.parse(event.body);
   const params = {
     TableName: process.env.todosTableName,
-    list: {
+    Item: {
       userId: event.requestContext.identity.cognitoIdentityId,
       todoId: uuid.v1(),
       complete: data.complete,
