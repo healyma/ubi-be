@@ -14,10 +14,10 @@ export async function main(event, context) {
     },
     // 'UpdateExpression' defines the attributes to be updated
     // 'ExpressionAttributeValues' defines the value in the update expression
-    UpdateExpression: "SET complete = :complete, attachments = :attachments, title=:title,notes =:notes,people= :people",
+    UpdateExpression: "SET items = :items, attachments = :attachments, name=:name,notes =:notes,people= :people",
     ExpressionAttributeValues: {
-      ":complete": data.complete || null,
-      ":title" : data.title || null,
+      ":items": data.items || null,
+      ":name" : data.name || null,
       ":attachments" : data.attachments || null,
       ":notes" : data.notes || null,
       ":people" : data.people || null
