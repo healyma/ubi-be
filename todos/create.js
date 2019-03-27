@@ -10,8 +10,8 @@ export async function main(event, context) {
       userId: event.requestContext.identity.cognitoIdentityId,
       todoId: uuid.v1(),
       complete: data.complete,
-      name: data.name,
-      items: data.listItems,
+      listName: data.listName,
+      listItems: data.listItems,
       createdAt: Date.now()
     }
   };

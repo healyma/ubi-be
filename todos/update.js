@@ -16,8 +16,8 @@ export async function main(event, context) {
     // 'ExpressionAttributeValues' defines the value in the update expression
     UpdateExpression: "SET listItems = :listItems, listName=:listName",
     ExpressionAttributeValues: {
-      ":listItems": data.items || null,
-      ":name" : datI.name || null
+      ":listItems": data.listItems || null,
+      ":listName" : data.listName || null
     },
     // 'ReturnValues' specifies if and how to return the item's attributes,
     // where ALL_NEW returns all attributes of the item after the update; you
