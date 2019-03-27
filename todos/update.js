@@ -18,7 +18,6 @@ export async function main(event, context) {
     ExpressionAttributeValues: {
       ":items": data.items || null,
       ":name" : data.name || null,
-      ":attachments" : data.attachments || null,
       ":notes" : data.notes || null,
       ":people" : data.people || null
 
@@ -33,7 +32,7 @@ export async function main(event, context) {
     const result = await dynamoDbLib.call("update", params);
     return success({ status: true });
   } catch (e) {
-    return failure({ status: false });
+    return failure({ status: false, error: e});
   }
 }
 
