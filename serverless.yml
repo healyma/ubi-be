@@ -33,7 +33,7 @@ provider:
   # In this case Lambda functions are granted with permissions to access DynamoDB.
   environment:
     todosTableName: ${self:custom.stage}-ubi-todos
-    todosItemsTableName: ${self:custom.stage}-ubi-todos
+    todoItemsTableName: ${self:custom.stage}-ubi-todos
     notesTableName: ${self:custom.stage}-ubi-notes
     stripeSecretKey: ${self:custom.environment.stripeSecretKey}
 
@@ -174,7 +174,7 @@ functions:
           method: post
           cors: true
           authorizer: aws_iam
-  get-todoItem:
+  get-todoItems:
     # Defines an HTTP API endpoint that calls the main function in get.js
     # - path: url path is /notes/{id}
     # - method: GET request
@@ -198,7 +198,7 @@ functions:
           cors: true
           authorizer: aws_iam
 
-  update-todoItem:
+  update-todoItems:
     # Defines an HTTP API endpoint that calls the main function in update.js
     # - path: url path is /notes/{id}
     # - method: PUT request
@@ -209,7 +209,7 @@ functions:
           method: put
           cors: true
           authorizer: aws_iam
-  delete-todoItem: 
+  delete-todoItems: 
     # Defines an HTTP endpoint to calls the main function in delete.js
     # path: url path is /notes/{id}
     # method: DELETE request
