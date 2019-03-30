@@ -14,7 +14,7 @@ export async function main(event, context) {
     },
     // 'UpdateExpression' defines the attributes to be updated
     // 'ExpressionAttributeValues' defines the value in the update expression
-    UpdateExpression: "SET listItems = :listItems, listName=:listName",
+    UpdateExpression: "SET itemName = :itemName, complete=:complete, completedAt=:completedAt,assignedTo=:assignedTo",
     ExpressionAttributeValues: {
       ":itemName": data.itemName || null,
       ":complete" : data.complete || null,
