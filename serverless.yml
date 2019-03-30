@@ -212,7 +212,7 @@ functions:
     # Defines an HTTP endpoint to calls the main function in delete.js
     # path: url path is /notes/{id}
     # method: DELETE request
-    handler: todoitems/delete.main
+    handler: todoItems/delete.main
     events:
       - http:
           path: todoitems/{id}
