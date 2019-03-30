@@ -22,7 +22,7 @@ export async function main(event, context) {
     return success(params.Item);
   } catch (e) {
 
-    return failure({ status: false, "error" : e});
+    return failure({ status: false, "error" : e, table: process.env.todoItemsTableName});
   }
 }
 
