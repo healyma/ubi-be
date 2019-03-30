@@ -165,6 +165,60 @@ functions:
           method: delete
           cors: true
           authorizer: aws_iam
+  create-todoItem:
+    handler: todoItems/create.main
+    events:
+      - http:
+          path: todoItems
+          method: post
+          cors: true
+          authorizer: aws_iam
+  get-todoItem:
+    # Defines an HTTP API endpoint that calls the main function in get.js
+    # - path: url path is /notes/{id}
+    # - method: GET request
+    handler: todoItems/get.main
+    events:
+      - http:
+          path: todoItems/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+
+  list-todoItems:
+    # Defines an HTTP API endpoint that calls the main function in list.js
+    # - path: url path is /notes
+    # - method: GET request
+    handler: todoItems/list.main
+    events:
+      - http:
+          path: todoItems
+          method: get
+          cors: true
+          authorizer: aws_iam
+
+  update-todoItem:
+    # Defines an HTTP API endpoint that calls the main function in update.js
+    # - path: url path is /notes/{id}
+    # - method: PUT request
+    handler: todoItems/update.main
+    events:
+      - http:
+          path: todoItems/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
+  delete-todoItem: 
+    # Defines an HTTP endpoint to calls the main function in delete.js
+    # path: url path is /notes/{id}
+    # method: DELETE request
+    handler: todoitems/delete.main
+    events:
+      - http:
+          path: todoitems/{id}
+          method: delete
+          cors: true
+          authorizer: aws_iam
   billing:
     handler: billing.main
     events:
