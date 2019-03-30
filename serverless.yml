@@ -33,6 +33,7 @@ provider:
   # In this case Lambda functions are granted with permissions to access DynamoDB.
   environment:
     todosTableName: ${self:custom.stage}-ubi-todos
+    todosItemsTableName: ${self:custom.stage}-ubi-todos
     notesTableName: ${self:custom.stage}-ubi-notes
     stripeSecretKey: ${self:custom.environment.stripeSecretKey}
 
