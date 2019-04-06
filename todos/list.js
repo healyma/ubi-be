@@ -1,6 +1,8 @@
-import * as dynamoDbLib from "../libs/dynamodb-lib";
+//import * as dynamoDbLib from "../libs/dynamodb-lib";
+import Database from "../libs/database";
 import { success, failure } from "../libs/response-lib";
 
+var sequelize = database.sequelize;
 export async function main(event, context) {
   const params = {
     TableName: process.env.todosTableName,
@@ -17,9 +19,10 @@ export async function main(event, context) {
   };
 
   try {
-    const result = await dynamoDbLib.call("query", params);
-    // Return the matching list of items in response body
-    return success(result.Items);
+    sequelize.query(`SELECT * FROM List_LT WHERE LT_URID = ${event.requestContext.identity.cognitoIdentityId}`, { type: sequelize.QueryTypes.SELECT})
+  .then(todos => {
+        return todos;
+  });
   } catch (e) {
     return failure({ status: false });
   }
