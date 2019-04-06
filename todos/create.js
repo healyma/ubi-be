@@ -1,5 +1,5 @@
 import uuid from "uuid";
-import * as dynamoDbLib from "../libs/dynamodb-lib";
+import database from "../libs/database";
 import { success, failure } from "../libs/response-lib";
 
 export  function main(event, context) {
