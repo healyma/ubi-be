@@ -14,7 +14,7 @@ export async function main(event, context) {
     ExpressionAttributeValues: {
       ":userId": event.requestContext.identity.cognitoIdentityId
     }
-  };
+  };return success(result.Items);
 
   try {
     const result = await dynamoDbLib.call("query", params);

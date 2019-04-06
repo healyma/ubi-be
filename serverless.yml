@@ -28,10 +28,19 @@ provider:
   runtime: nodejs8.10
   stage: dev
   region: eu-west-1
-
-  # 'iamRoleStatements' defines the permission policy for the Lambda function.
-  # In this case Lambda functions are granted with permissions to access DynamoDB.
+  vpc:
+    securityGroupIds:
+      - sg-0d8d6c6aa4031d6a5
+    subnetIds:
+      - subnet-fed3b0b6
+      - subnet-dc3de086
+      - subnet-d9b724bf
   environment:
+    MYSQLHOST: 'ubi.colyn5fsj6kg.eu-west-1.rds.amazonaws.com'
+    MYSQLPORT: '3306'
+    MYSQLUSER: 'healyma'
+    MYSQLPASS: 'see8Koxe2013'
+    MYSQLDATABASE: 'ubi'
     todosTableName: ${self:custom.stage}-ubi-todos
     todoItemsTableName: ${self:custom.stage}-ubi-todoItems
     notesTableName: ${self:custom.stage}-ubi-notes

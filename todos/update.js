@@ -1,34 +1,29 @@
-import * as dynamoDbLib from "../libs/dynamodb-lib";
+import database from "../libs/database";
 import { success, failure } from "../libs/response-lib";
 
-export async function main(event, context) {
-  const data = JSON.parse(event.body);
-  const params = {
-    TableName: process.env.todosTableName,
-    // 'Key' defines the partition key and sort key of the item to be updated
-    // - 'userId': Identity Pool identity id of the authenticated user
-    // - 'noteId': path parameter
-    Key: {
-      userId: event.requestContext.identity.cognitoIdentityId,
-      todoId: event.pathParameters.id
-    },
-    // 'UpdateExpression' defines the attributes to be updated
-    // 'ExpressionAttributeValues' defines the value in the update expression
-    UpdateExpression: "SET listItems = :listItems, listName=:listName",
-    ExpressionAttributeValues: {
-      ":listItems": data.listItems || null,
-      ":listName" : data.listName || null
-    },
-    // 'ReturnValues' specifies if and how to return the item's attributes,
-    // where ALL_NEW returns all attributes of the item after the update; you
-    // can inspect 'result' below to see how it works with different settings
-    ReturnValues: "ALL_NEW"
-  };
 
+export  function main(event, context) {
   try {
-    const result = await dynamoDbLib.call("update", params);
-    return success({ status: true });
+  const data = JSON.parse(event.body);
+  console.log(data);
+  const qry="UPDATE List_LT SET LT_Name='" + data.LT_Name  + "' Where LT_ID=" + data.LT_ID;
+  console.log(qry);
+  database.query(qry , function (error, results) {
+    if (error) {
+      console.log(error);
+        database.destroy();
+        
+    return failure({ status: false, error});
+    } else {
+        // connected!
+        console.log("seemed to work");
+        console.log(results);
+        database.end();
+        return success({ status: true });
+    }
+});
   } catch (e) {
+    console.log(e);
     return failure({ status: false, error: e});
   }
 }

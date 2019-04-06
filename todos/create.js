@@ -2,27 +2,28 @@ import uuid from "uuid";
 import * as dynamoDbLib from "../libs/dynamodb-lib";
 import { success, failure } from "../libs/response-lib";
 
-export async function main(event, context) {
-  const data = JSON.parse(event.body);
-  const params = {
-    TableName: process.env.todosTableName,
-    Item: {
-      userId: event.requestContext.identity.cognitoIdentityId,
-      todoId: uuid.v1(),
-      complete: data.complete,
-      listName: data.listName,
-      listItems: data.listItems,
-      createdAt: Date.now()
-    }
-  };
-
-
+export  function main(event, context) {
   try {
-    await dynamoDbLib.call("put", params);
-    return success(params.Item);
+  const data = JSON.parse(event.body);
+  console.log(data);
+  const qry="INSERT INTO List_LT (LT_Name, LY_Created_URID) VALUES ('" + data.LT_Name  + "','" + event.requestContext.identity.cognitoIdentityId + "'";
+  console.log(qry);
+  database.query(qry , function (error, results) {
+    if (error) {
+      console.log(error);
+        database.destroy();
+        
+    return failure({ status: false, error});
+    } else {
+        // connected!
+        console.log("seemed to work");
+        console.log(results);
+        database.end();
+        return success({ status: true });
+    }
+});
   } catch (e) {
-
-    return failure({ status: false, "error" : e});
+    console.log(e);
+    return failure({ status: false, error: e});
   }
 }
-
