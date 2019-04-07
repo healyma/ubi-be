@@ -2,7 +2,9 @@ import database from "../libs/database";
 import { success, failure } from "../libs/response-lib";
 
 export  function main(event, context,callback) {
-  const data = JSON.parse(event.body);
+  console.log(event);
+  const data = event.body;
+
   context.callbackWaitsForEmptyEventLoop = false;
   database.getConnection((err, connection) =>{
     // Use the connection

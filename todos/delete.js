@@ -6,6 +6,7 @@ export function main(event, context) {
   try {
     context.callbackWaitsForEmptyEventLoop = false;
     database.query(`DELETE FROM List_LT WHERE LT_ID = ` + event.pathParameters.id, function (error, results) {
+      
       if (error) {
         console.log(error);
           database.destroy();
