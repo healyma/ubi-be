@@ -3,6 +3,7 @@ import { success, failure } from "../libs/response-lib";
 
 export  function main(event, context,callback) {
   const data = JSON.parse(event.body);
+  context.callbackWaitsForEmptyEventLoop = false;
   database.getConnection((err, connection) =>{
     // Use the connection
     connection.query("INSERT INTO List_LT (LT_Name, LT_Created_URID) VALUES ('" + data.LT_Name  + "','" + event.requestContext.identity.cognitoIdentityId + "')", function (error, results, fields) {

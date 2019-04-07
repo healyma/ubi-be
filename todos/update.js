@@ -5,7 +5,7 @@ import { success, failure } from "../libs/response-lib";
 export  function main(event, context) {
   try {
   const data = JSON.parse(event.body);
-  console.log(data);
+  context.callbackWaitsForEmptyEventLoop = false;
   const qry="UPDATE List_LT SET LT_Name='" + data.LT_Name  + "' Where LT_ID=" + data.LT_ID;
   console.log(qry);
   database.query(qry , function (error, results) {
